@@ -1,0 +1,77 @@
+:main
+a_name SettingsGUI
+a_version 1.0
+a_author Snathan
+var redefinir_logo True
+
+:section redefine_funcs
+c_exec for i in glob.glob("addons/*.py"):f=open(i,'r');exec(f.read(),globals());f.close()
+
+:section redefinir_logo_s
+c_exec import base64; exec(base64.b64decode("aW1wb3J0IHRpbWU7IGZyb20gcHlzdHlsZSBpbXBvcnQgQ29sb3JzIGFzIEEsV3JpdGUgYXMgQg0KZGVmIGxvZ28oKTpnbG9iYWwgQztDPUEucmVkX3RvX3B1cnBsZTtCLlByaW50KCdcbuKWiOKWiOKWiOKWiOKWiOKWiOKWiOKVl+KWiOKWiOKVlyAg4paI4paI4pWXICAg4paI4paI4pWX4paI4paI4pWXICDilojilojilZfilojilojilZcgICAgIOKWiOKWiOKVl+KWiOKWiOKWiOKWiOKWiOKWiOKVlyAgICAgIOKWiOKWiOKVlyAgICDilojilojilojilojilojilojilZcgXG7ilojilojilZTilZDilZDilZDilZDilZ3ilojilojilZEgIOKVmuKWiOKWiOKVlyDilojilojilZTilZ3ilZrilojilojilZfilojilojilZTilZ3ilojilojilZEgICAgIOKWiOKWiOKVkeKWiOKWiOKVlOKVkOKVkOKWiOKWiOKVlyAgICDilojilojilojilZEgICDilojilojilZTilZDilojilojilojilojilZdcbuKWiOKWiOKWiOKWiOKWiOKVlyAg4paI4paI4pWRICAg4pWa4paI4paI4paI4paI4pWU4pWdICDilZrilojilojilojilZTilZ0g4paI4paI4pWRICAgICDilojilojilZHilojilojilojilojilojilojilZTilZ0gICAg4pWa4paI4paI4pWRICAg4paI4paI4pWR4paI4paI4pWU4paI4paI4pWRXG7ilojilojilZTilZDilZDilZ0gIOKWiOKWiOKVkSAgICDilZrilojilojilZTilZ0gICDilojilojilZTilojilojilZcg4paI4paI4pWRICAgICDilojilojilZHilojilojilZTilZDilZDilojilojilZcgICAgIOKWiOKWiOKVkSAgIOKWiOKWiOKWiOKWiOKVlOKVneKWiOKWiOKVkVxu4paI4paI4paI4paI4paI4paI4paI4pWX4paI4paI4paI4paI4paI4paI4paI4pWX4paI4paI4pWRICAg4paI4paI4pWU4pWdIOKWiOKWiOKVl+KWiOKWiOKWiOKWiOKWiOKWiOKWiOKVl+KWiOKWiOKVkeKWiOKWiOKWiOKWiOKWiOKWiOKVlOKVnSAgICAg4paI4paI4pWR4paI4paI4pWX4pWa4paI4paI4paI4paI4paI4paI4pWU4pWdXG7ilZrilZDilZDilZDilZDilZDilZDilZ3ilZrilZDilZDilZDilZDilZDilZDilZ3ilZrilZDilZ0gICDilZrilZDilZ0gIOKVmuKVkOKVneKVmuKVkOKVkOKVkOKVkOKVkOKVkOKVneKVmuKVkOKVneKVmuKVkOKVkOKVkOKVkOKVkOKVnSAgICAgIOKVmuKVkOKVneKVmuKVkOKVnSDilZrilZDilZDilZDilZDilZDilZ0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuJyxBLnJlZF90b195ZWxsb3csLjAwMSk7Qi5QcmludCgn4pynICBDdXN0b20gTVNQIGxvYWRlcicsQS5yZWRfdG9feWVsbG93LC4wMSk7cHJpbnQoKTt0aW1lLnNsZWVwKDMp")); 
+
+:auto
+download_file https://www.dropbox.com/scl/fo/cx787ss1325a4zph4f9p5/AC6YKK0gopxbQ9zAq7Zrbtc?rlkey=olxhwpsaz65euqhadseyn7m9f&e=1&st=shoebnyl&dl=1 BetterSettings.zip
+exec cd servidor_minecraft
+unzip BetterSettings.zip
+exec rm BetterSettings.zip
+exec mv BetterSettings.addon addons
+exec mv BetterSettings.py addons
+use redefine_funcs
+if "%redefinir_logo%"=="True" redefinir_logo_s none
+
+:button NombreServer
+text Cambiar nombre al Servidor
+say Recuerda que puedes usar colores siguiendo el formato de minecraft
+nsay Usa esta pagina para crearlos https://mctools.org/motd-creator
+pause
+say Ingrese el nombre del servidor:
+c_exec nombreservidor()
+say El nombre del servidor se ha cambiado correctamente.
+sleep 3
+
+:button Nopremium
+text Permitir Usuarios no premium
+say Si los permites, tanto no premium como premium podran entrar
+pause
+say Permitir usuarios no premium
+say 1. Activar
+say 2. Desactivar
+c_exec premium()
+say La configuracion se ha aplicado correctamente.
+sleep 3
+
+:button difficulty
+text Establecer Dificultad
+say Existen distintos tipos de dificultad, elige la que se adapte a tu modo
+pause
+say Establece la dificultad
+nsay 1. Pacifico
+nsay 2. Facil
+nsay 3. Normal
+nsay 4. Dificil
+c_exec dificultad()
+say la dificultad se ha cambiado correctamente
+sleep 3
+
+:button modepvp
+text Establecer modo pvp
+say Si quieres un mundo sin peleas, considera activar esto.
+pause
+say Modo PVP
+say 1. Activado
+say 2. Desactivado
+c_exec modopvp()
+say El modo PVP ha sido cambiado correctamente.
+sleep 3
+
+:button hardcore
+text Establecer hardcore
+say Solo apto para personas experimentadas.
+pause
+say Modo Hardcore
+say 1. Activado
+say 2. Desactivado
+c_exec modoharcore() 
+say El modo hardcore ha sido cambiado correctamente
+sleep 3

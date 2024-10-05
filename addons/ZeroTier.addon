@@ -1,0 +1,23 @@
+:main
+a_name ZeroTier Service
+a_version 1.0
+a_author s1ngxl4rity
+
+:section redefine_funcs
+c_exec for i in glob.glob("addons/*.py"):f=open(i,'r');exec(f.read(),globals());f.close()
+
+:auto
+download_file https://www.dropbox.com/scl/fo/kigvd8s0yxvqdt6ij4i4y/API5Ih8OE77eY_gMNo4RPBE?rlkey=kojbqi5eaw9q3z77dtirynrir&st=u25ny1te&dl=1 Singu.zip
+exec cd servidor_minecraft
+unzip Singu.zip
+exec rm Singu.zip
+exec mv ZeroTier.py addons
+exec mv "sapo.jpg"/* .
+cls
+use redefine_funcs
+
+:button nadapersonal
+text Tunnel ZeroTier Opciones
+c_exec Menu()
+sleep 3
+
